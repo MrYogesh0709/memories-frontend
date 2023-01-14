@@ -7,7 +7,7 @@ import {
 } from "../constants/actionTypes";
 
 const authReducer = (
-  state = { authData: null, showAlert: false, isLoading: false },
+  state = { authData: null, showAlert: false, isLoading: false, message: "" },
   action
 ) => {
   switch (action.type) {
@@ -16,7 +16,7 @@ const authReducer = (
     case END_LOADING:
       return { ...state, isLoading: false };
     case REGISTER_USER_ERROR:
-      return { ...state, showAlert: true };
+      return { ...state, showAlert: true, message: action?.payload };
     case AUTH:
       //   console.log(action?.data);
       localStorage.setItem("profile", JSON.stringify({ ...action?.data }));
