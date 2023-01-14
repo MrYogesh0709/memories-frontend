@@ -5,12 +5,13 @@ import { LockOutlined } from "@material-ui/icons";
 import {
   Avatar,
   Button,
+  CircularProgress,
   Container,
   Grid,
   Paper,
   Typography,
 } from "@material-ui/core";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signin, signup } from "../../actions/auth";
 
@@ -29,6 +30,8 @@ const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState(intialState);
+  const { isLoading } = useSelector((store) => store.auth);
+  const { showAlert } = useSelector((store) => store.auth);
 
   // const isSignUp = true;
   const handleSubmit = (e) => {
@@ -51,9 +54,15 @@ const Auth = () => {
   const switchMode = () => {
     setIsSignUp((prevIsSignup) => !prevIsSignup);
   };
-
-  return (
+  return isLoading ? (
+    <CircularProgress />
+  ) : (
     <Container component="main" maxWidth="xs">
+      {showAlert && (
+        <div className="alert alert-danger">
+          there was an error, please try again
+        </div>
+      )}
       <Paper className={classes.paper} elevation={3}>
         <Avatar className={classes.avatar}>
           <LockOutlined />

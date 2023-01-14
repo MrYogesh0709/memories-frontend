@@ -1,7 +1,22 @@
-import { AUTH, LOGOUT } from "../constants/actionTypes";
+import {
+  AUTH,
+  END_LOADING,
+  LOGOUT,
+  REGISTER_USER_ERROR,
+  START_LOADING,
+} from "../constants/actionTypes";
 
-const authReducer = (state = { authData: null }, action) => {
+const authReducer = (
+  state = { authData: null, showAlert: false, isLoading: false },
+  action
+) => {
   switch (action.type) {
+    case START_LOADING:
+      return { ...state, isLoading: true };
+    case END_LOADING:
+      return { ...state, isLoading: false };
+    case REGISTER_USER_ERROR:
+      return { ...state, showAlert: true };
     case AUTH:
       //   console.log(action?.data);
       localStorage.setItem("profile", JSON.stringify({ ...action?.data }));
