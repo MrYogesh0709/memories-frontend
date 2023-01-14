@@ -13,8 +13,11 @@ export const signin = (formData, navigate) => async (dispatch) => {
     navigate("/");
     dispatch({ type: END_LOADING });
   } catch (error) {
-    console.log(error);
-    dispatch({ type: REGISTER_USER_ERROR });
+    // console.log(error.response.data);
+    dispatch({
+      type: REGISTER_USER_ERROR,
+      payload: error.response.data.message,
+    });
     dispatch({ type: END_LOADING });
   }
 };
@@ -26,8 +29,11 @@ export const signup = (formData, navigate) => async (dispatch) => {
     dispatch({ type: END_LOADING });
     navigate("/");
   } catch (error) {
-    console.log(error);
-    dispatch({ type: REGISTER_USER_ERROR });
+    // console.log(error);
+    dispatch({
+      type: REGISTER_USER_ERROR,
+      payload: error.response.data.message,
+    });
     dispatch({ type: END_LOADING });
   }
 };

@@ -30,8 +30,7 @@ const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState(intialState);
-  const { isLoading } = useSelector((store) => store.auth);
-  const { showAlert } = useSelector((store) => store.auth);
+  const { isLoading, showAlert, message } = useSelector((store) => store.auth);
 
   // const isSignUp = true;
   const handleSubmit = (e) => {
@@ -55,14 +54,12 @@ const Auth = () => {
     setIsSignUp((prevIsSignup) => !prevIsSignup);
   };
   return isLoading ? (
-    <CircularProgress />
+    <Container className={classes.loading}>
+      <CircularProgress size="5rem" />
+    </Container>
   ) : (
     <Container component="main" maxWidth="xs">
-      {showAlert && (
-        <div className="alert alert-danger">
-          there was an error, please try again
-        </div>
-      )}
+      {showAlert && <div className="alert alert-danger">{message}</div>}
       <Paper className={classes.paper} elevation={3}>
         <Avatar className={classes.avatar}>
           <LockOutlined />

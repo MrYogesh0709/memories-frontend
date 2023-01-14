@@ -1,6 +1,11 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
+  loading: {
+    display: "grid",
+    justifyContent: "center",
+    margin: "15rem 0",
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
