@@ -14,6 +14,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signin, signup } from "../../actions/auth";
+import jwtDecode from "jwt-decode";
+import { GoogleLogin } from "@react-oauth/google";
 
 const intialState = {
   firstName: "",
@@ -53,6 +55,14 @@ const Auth = () => {
   const switchMode = () => {
     setIsSignUp((prevIsSignup) => !prevIsSignup);
   };
+
+  const loginSuccess = (response) => {
+    const result = jwtDecode(response?.credential);
+    const token = response.credential;
+    dispatch({ type: "AUTH", data: { result, token } });
+    navigate("/");
+  };
+
   return isLoading ? (
     <Container className={classes.loading}>
       <CircularProgress size="5rem" />
@@ -114,9 +124,14 @@ const Auth = () => {
           >
             {isSignUp ? "Sign Up" : "Sign In"}
           </Button>
-
           <Grid container justifyContent="center">
-            <Button id="signInDiv"></Button>
+            <GoogleLogin
+              onSuccess={loginSuccess}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+              width="100%"
+            />
           </Grid>
           <Grid container justifyContent="center">
             <Grid>

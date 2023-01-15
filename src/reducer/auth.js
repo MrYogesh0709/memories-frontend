@@ -18,7 +18,6 @@ const authReducer = (
     case REGISTER_USER_ERROR:
       return { ...state, showAlert: true, message: action?.payload };
     case AUTH:
-      //   console.log(action?.data);
       localStorage.setItem("profile", JSON.stringify({ ...action?.data }));
       return { ...state, authData: action?.data };
     case LOGOUT:
