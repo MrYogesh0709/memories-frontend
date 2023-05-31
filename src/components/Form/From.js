@@ -30,6 +30,7 @@ const From = ({ currentId, setCurrentId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!postData.title || !postData.message || !postData.selectedFile) return;
     if (currentId) {
       dispatch(
         updatePost(currentId, { ...postData, name: user?.result?.name })
@@ -54,7 +55,6 @@ const From = ({ currentId, setCurrentId }) => {
   const clear = () => {
     setCurrentId(null);
     setPostData({
-      // creator: "",
       title: "",
       message: "",
       tags: "",
@@ -72,18 +72,9 @@ const From = ({ currentId, setCurrentId }) => {
         <Typography variant="h6">
           {currentId ? "Editing " : "Creating "} a Memory
         </Typography>
-        {/* <TextField
-          name="creator"
-          variant="outlined"
-          label="Creator"
-          fullWidth
-          value={postData.creator}
-          onChange={(e) =>
-            setPostData({ ...postData, creator: e.target.value })
-          }
-        /> */}
         <TextField
           name="title"
+          required
           variant="outlined"
           label="Title"
           fullWidth
