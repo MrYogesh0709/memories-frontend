@@ -17,7 +17,7 @@ import { signin, signup } from "../../actions/auth";
 import jwtDecode from "jwt-decode";
 import { GoogleLogin } from "@react-oauth/google";
 
-const intialState = {
+const initialState = {
   firstName: "",
   lastName: "",
   email: "",
@@ -31,7 +31,7 @@ const Auth = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
-  const [formData, setFormData] = useState(intialState);
+  const [formData, setFormData] = useState(initialState);
   const { isLoading, showAlert, message } = useSelector((store) => store.auth);
 
   // const isSignUp = true;

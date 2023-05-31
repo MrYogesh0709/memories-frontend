@@ -7,7 +7,7 @@ import { createPost, updatePost } from "../../actions/posts";
 import { useNavigate } from "react-router-dom";
 
 const From = ({ currentId, setCurrentId }) => {
-  const naviagate = useNavigate();
+  const navigate = useNavigate();
   const [postData, setPostData] = useState({
     // creator: "",
     title: "",
@@ -37,9 +37,7 @@ const From = ({ currentId, setCurrentId }) => {
       );
       clear();
     } else {
-      dispatch(
-        createPost({ ...postData, name: user?.result?.name }, naviagate)
-      );
+      dispatch(createPost({ ...postData, name: user?.result?.name }, navigate));
       clear();
     }
   };
