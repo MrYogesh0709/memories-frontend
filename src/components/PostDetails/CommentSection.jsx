@@ -18,7 +18,7 @@ const CommentSection = ({ post }) => {
     const newComments = await dispatch(commentPost(finalComment, post._id));
     setComments(newComments);
     setComment("");
-    commentsRef.current.scrollIntoView({ behaviour: "smoooth" });
+    commentsRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -45,7 +45,7 @@ const CommentSection = ({ post }) => {
               fullWidth
               minRows={4}
               variant="outlined"
-              label="commment"
+              label="comment"
               multiline
               value={comment}
               onChange={(e) => setComment(e.target.value)}

@@ -21,6 +21,7 @@ const App = () => {
             path="/auth"
             element={user ? <Navigate to="/posts" /> : <Auth />}
           />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Container>
     </BrowserRouter>
