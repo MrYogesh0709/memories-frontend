@@ -1,13 +1,13 @@
 # Getting Started Memories Application
 
 Open Your Terminal  `cd client`
-## `npm install`
+## `yarn install`
 
 Install All dependencies for project:-
 
 ## Available Scripts
 
-### `npm start`
+### `yarn run start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -19,7 +19,7 @@ Add .env the environment variable to your root directory
 
 REACT_APP_GOOGLE_CLIENT_ID=YOUR_GOOGLE_CLIENT_ID
 
-### `npm run build`
+### `yarn run build`
 
 Builds the app for production to the `build` folder.\
 
