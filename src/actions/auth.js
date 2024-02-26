@@ -13,7 +13,6 @@ export const signin = (formData, navigate) => async (dispatch) => {
     navigate("/");
     dispatch({ type: END_LOADING });
   } catch (error) {
-    // console.log(error.response.data);
     dispatch({
       type: REGISTER_USER_ERROR,
       payload: error.response.data.message,

@@ -45,12 +45,6 @@ const Home = () => {
     }
   };
 
-  const handleKeyPress = (e) => {
-    if (e.keyCode === 13) {
-      searchPost();
-    }
-  };
-
   const handleAdd = (tag) => setTags([...tags, tag]);
   const handleDelete = (tagToDelete) =>
     setTags(tags.filter((tag) => tag !== tagToDelete));
@@ -81,7 +75,6 @@ const Home = () => {
                 fullWidth
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                onKeyPress={handleKeyPress}
               />
               <ChipInput
                 styles={{ margin: "10px 0" }}
@@ -95,6 +88,7 @@ const Home = () => {
                 onClick={searchPost}
                 className={classes.searchButton}
                 color="primary"
+                disabled={!search}
                 variant="contained"
               >
                 Search

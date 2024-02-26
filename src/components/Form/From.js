@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 const From = ({ currentId, setCurrentId }) => {
   const navigate = useNavigate();
   const [postData, setPostData] = useState({
-    // creator: "",
     title: "",
     message: "",
     tags: "",
@@ -30,7 +29,14 @@ const From = ({ currentId, setCurrentId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!postData.title || !postData.message || !postData.selectedFile) return;
+    if (!postData.selectedFile) {
+      window.alert("Please select a file");
+      return;
+    }
+    if (!postData.title || !postData.message) {
+      window.alert("Please select a title and message");
+      return;
+    }
     if (currentId) {
       dispatch(
         updatePost(currentId, { ...postData, name: user?.result?.name })
@@ -117,6 +123,7 @@ const From = ({ currentId, setCurrentId }) => {
           size="large"
           type="submit"
           fullWidth
+          disabled={!postData.title || !postData.message}
         >
           Submit
         </Button>
